@@ -39,5 +39,18 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'points' => 'int',
     ];
+
+    public function incrementPoints()
+    {
+        $this->increment('points');
+    }
+
+    public function decrementPoints()
+    {
+        if ($this->points > 0) {
+            $this->decrement('points');
+        }
+    }
 }

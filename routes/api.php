@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UserPointsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('users', [UsersController::class, 'store']);
 Route::get('users', [UsersController::class, 'index']);
 Route::delete('users/{user}', [UsersController::class, 'destroy']);
+
+Route::post('users/{user}/points', [UserPointsController::class, 'store']);
+Route::delete('users/{user}/points', [UserPointsController::class, 'destroy']);

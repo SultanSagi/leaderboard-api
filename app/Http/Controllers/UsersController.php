@@ -25,4 +25,11 @@ class UsersController extends Controller
 
         return new UserCollection($users);
     }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return response()->json([], 204);
+    }
 }

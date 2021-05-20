@@ -51,4 +51,40 @@ class UsersTest extends TestCase
 
         $this->assertDatabaseMissing('users', ['id' => $user->id]);
     }
+
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function test_increment_user_points()
+    {
+        $user = User::factory()->create();
+
+        $this->post("api/users/{$user->id}/points");
+
+        $this->assertSame(1, $user->fresh()->points);
+
+        $this->post("api/users/{$user->id}/points");
+
+        $this->assertSame(2, $user->fresh()->points);
+    }
+
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function test_decrement_user_points()
+    {
+        $user = User::factory()->create();
+
+        $this->post("api/users/{$user->id}/points");
+
+        $this->assertSame(1, $user->fresh()->points);
+
+        $this->delete("api/users/{$user->id}/points");
+
+        $this->assertSame(0, $user->fresh()->points);
+    }
 }
