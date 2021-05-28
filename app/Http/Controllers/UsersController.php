@@ -8,6 +8,34 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    /**
+     * @OA\Post(
+
+     *  path="/api/users",
+
+     *  operationId="usersStore",
+
+     *  summary="Create a user",
+
+     *  @OA\Parameter(name="name",
+
+     *    in="query",
+
+     *    required=true,
+
+     *    @OA\Schema(type="string")
+
+     *  ),
+
+     *  @OA\Response(response="200",
+
+     *    description="User Response",
+
+     *  )
+
+     * )
+
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -19,6 +47,25 @@ class UsersController extends Controller
         return response()->json('User created', 201);
     }
 
+    /**
+     * @OA\Get(
+
+     *  path="/api/users",
+
+     *  operationId="usersList",
+
+     *  summary="Get all users",
+
+
+     *  @OA\Response(response="200",
+
+     *    description="User Response",
+
+     *  )
+
+     * )
+
+     */
     public function index()
     {
         $users = User::query()->latest('points')->get();
@@ -26,6 +73,34 @@ class UsersController extends Controller
         return new UserCollection($users);
     }
 
+    /**
+     * @OA\Delete(
+
+     *  path="/api/users/{user}",
+
+     *  operationId="usersDelete",
+
+     *  summary="Delete a user",
+
+     *  @OA\Parameter(name="user",
+
+     *    in="query",
+
+     *    required=true,
+
+     *    @OA\Schema(type="integer")
+
+     *  ),
+
+     *  @OA\Response(response="200",
+
+     *    description="User Response",
+
+     *  )
+
+     * )
+
+     */
     public function destroy(User $user)
     {
         $user->delete();

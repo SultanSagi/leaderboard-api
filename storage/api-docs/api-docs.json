@@ -1,0 +1,103 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My First API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/{user}/points": {
+            "post": {
+                "summary": "Increment user points",
+                "operationId": "userPointsStore",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Response"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Decrement user points",
+                "operationId": "userPointsStore",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Response"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "summary": "Get all users",
+                "operationId": "usersList",
+                "responses": {
+                    "200": {
+                        "description": "User Response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a user",
+                "operationId": "usersStore",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Response"
+                    }
+                }
+            }
+        },
+        "/api/users/{user}": {
+            "delete": {
+                "summary": "Delete a user",
+                "operationId": "usersDelete",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Response"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
