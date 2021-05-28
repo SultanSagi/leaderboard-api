@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Resources\UserCollection;
 
 class UserPointsController extends Controller
 {
@@ -10,13 +11,17 @@ class UserPointsController extends Controller
     {
         $user->incrementPoints();
 
-        return response()->json(['point incremented']);
+        $users = User::query()->latest('points')->get();
+
+        return new UserCollection($users);
     }
 
     public function destroy(User $user)
     {
         $user->decrementPoints();
 
-        return response()->json(['point decremented']);
+        $users = User::query()->latest('points')->get();
+
+        return new UserCollection($users);
     }
 }

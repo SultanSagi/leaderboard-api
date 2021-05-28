@@ -21,7 +21,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users = User::query()->get();
+        $users = User::query()->latest('points')->get();
 
         return new UserCollection($users);
     }
